@@ -5,6 +5,18 @@ export class Product extends React.Component{
 	constructor(props)
 	{
 		super(props);
+		this.handleUpVote = this.handleUpVote.bind(this);
+		this.handleDownVote = this.handleDownVote.bind(this);
+	}
+
+	handleUpVote()
+	{
+		this.props.onVote(this.props.id);
+	}
+
+	handleDownVote()
+	{
+		this.props.onVoteDown(this.props.id);
 	}
 
 	render()
@@ -16,8 +28,11 @@ export class Product extends React.Component{
 				</div>
 				<div className='middle aligned content'>
 					<div className='header'>
-						<a>
+						<a onClick={this.handleUpVote}>
 							<i className='large caret up icon'></i>
+						</a>
+						<a onClick={this.handleDownVote}>
+							<i className='large caret down icon'></i>
 						</a>
 						{this.props.votes}
 					</div>
